@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>DataVisualization-16011169강홍구</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['district', 'school'],
+              ['종로구', 3346], ['중구', 3449], ['동대문구', 10016],
+              ['성동구', 10526], ['광진구', 9071], ['강동구', 15503],
+              ['서초구', 13871], ['은평구', 13579], ['강북구', 7109],
+              ['도봉구', 8457], ['송파구', 23170], ['중랑구', 10943],
+              ['서대문구', 9352], ['마포구', 12205], ['양천구', 12731],
+              ['강서구', 19091], ['구로구', 13520], ['금천구', 6175],
+              ['영등포구', 12739], ['강남구', 14398], ['노원구', 14495],
+              ['관악구', 10791], ['동작구', 11766] , ['성북구', 13036], ['용산구', 6581]
+            ]);
+            var options = {
+              title: '행정구역별 영유아 수',
+              legend: 'none',
+              pieSliceText: 'label',
+              slices: {  10: {offset: 0.6},
+                        15: {offset: 0.4},
+                        5: {offset: 0.3},
+                        20: {offset: 0.2},
+                        19: {offset: 0.1}
+              },
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('pop_piechart'));
+            chart.draw(data, options);
+          }
+        </script>
+        <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['district', 'school'],
+            ['종로구', 13], ['중구', 12], ['동대문구', 21],
+            ['성동구', 21], ['광진구', 22], ['강동구', 27],
+            ['서초구', 26], ['은평구', 31], ['강북구', 14],
+            ['도봉구', 23], ['송파구', 40], ['중랑구', 23],
+            ['서대문구', 19], ['마포구', 22], ['양천구', 30],
+            ['강서구', 36], ['구로구', 26], ['금천구', 18],
+            ['영등포구', 23], ['강남구', 33], ['노원구', 42],
+            ['관악구', 22], ['동작구', 21] , ['성북구', 29], ['용산구', 15]
+          ]);
+
+          var options = {
+            title: '행정구역별 초등학교 수',
+            legend: 'none',
+            pieSliceText: 'label',
+            slices: {  20: {offset: 0.6},
+                      10: {offset: 0.4},
+                      15: {offset: 0.3},
+                      19: {offset: 0.2},
+                      7: {offset: 0.1}
+            },
+          };
+
+          var chart = new google.visualization.PieChart(document.getElementById('school_piechart'));
+          chart.draw(data, options);
+        }
+      </script>
+        <script type="text/javascript">
+        google.charts.load('current', {'packages':['line', 'corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var chartDiv = document.getElementById('pop_chart_div');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '연도');
+        data.addColumn('number', "전체 인구");
+        data.addColumn('number', "영유아 인구");
+
+        data.addRows([
+          ['2010',  4955,  25.5],
+          ['2011',  4994,  25.1],
+          ['2012',  5020,  25.6],
+          ['2013',  5043,  24.9],
+          ['2014',  5075,  24.2],
+          ['2015',  5101,  23.2],
+          ['2016',  5121,  22.2],
+          ['2017',  5136,  20.6],
+          ['2018',  5161,  18.2],
+          ['2019',  5178,  16.5]
+        ]);
+
+        var materialOptions = {
+          chart: {
+            title: ' '
+          },
+          width: 900,
+          height: 500,
+          series: {
+            // Gives each series an axis name that matches the Y-axis below.
+            0: {axis: 'Total'},
+            1: {axis: 'Children'}
+          },
+          axes: {
+            // Adds labels to each axis; they don't have to match the axis names.
+            y: {
+              Total: {label: '전체인구(만명)'},
+              Children: {label: '영유아인구(만명)'}
+            }
+          }
+        };
+        function drawMaterialChart() {
+          var materialChart = new google.charts.Line(chartDiv);
+          materialChart.draw(data, materialOptions);
+          button.innerText = 'Change to Classic';
+          button.onclick = drawClassicChart;
+        }
+
+        drawMaterialChart();
+
+      }
+    </script>
+      <script type="text/javascript">
+      google.charts.load('current', {'packages':['line', 'corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var chartDiv = document.getElementById('pop_school_chart_div');
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '연도');
+        data.addColumn('number', "초등학교 수");
+        data.addColumn('number', "영유아 인구");
+
+        data.addRows([
+          ['2010',  587,  25.5],
+          ['2011',  591,  25.1],
+          ['2012',  594,  25.6],
+          ['2013',  597,  24.9],
+          ['2014',  599,  24.2],
+          ['2015',  599,  23.2],
+          ['2016',  601,  22.2],
+          ['2017',  603,  20.6],
+          ['2018',  603,  18.2],
+          ['2019',  607,  16.5]
+        ]);
+
+        var materialOptions = {
+          chart: {
+            title: ' '
+          },
+          width: 900,
+          height: 500,
+          series: {
+            // Gives each series an axis name that matches the Y-axis below.
+            0: {axis: 'Total'},
+            1: {axis: 'Children'}
+          },
+          axes: {
+            // Adds labels to each axis; they don't have to match the axis names.
+            y: {
+              Total: {label: '초등학교수'},
+              Children: {label: '영유아인구(만명)'}
+            }
+          }
+        };
+        function drawMaterialChart() {
+          var materialChart = new google.charts.Line(chartDiv);
+          materialChart.draw(data, materialOptions);
+          button.innerText = 'Change to Classic';
+          button.onclick = drawClassicChart;
+        }
+
+        drawMaterialChart();
+
+      }
+    </script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+              ['Mushrooms', 5],
+              ['Onions', 1],
+              ['Olives', 1],
+              ['Zucchini', 1],
+              ['Pepperoni', 2]
+            ]);
+            var options = {'title':'How Much Pizza I Ate Last Night',
+                           'width':400,
+                           'height':300};
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+          }
+        </script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['연도', '교원 1인당 학생수'],
+              ['2010',  14.6],
+              ['2011',  14.1],
+              ['2012',  14.2],
+              ['2013',  13.9],
+              ['2014',  13.7],
+              ['2015',  13.2],
+              ['2016',  12.9],
+              ['2017',  12.5],
+              ['2018',  12.2],
+              ['2019',  11.9]
+            ]);
+
+            var options = {
+              title: '교원 1인당 학생 수',
+              curveType: 'function',
+              legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+          }
+        </script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">DataVisualization</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Problems</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Data Processiing & Visualization</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Conclusions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container d-flex h-100 align-items-center">
+                <div class="mx-auto text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">Data Visualization#3</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">디지털콘텐츠학과 16011169 강홍구</h2>
+                    <a class="btn btn-primary js-scroll-trigger" href="#about">Get Started</a>
+                </div>
+            </div>
+        </header>
+        <!-- Problems-->
+        <section class="about-section text-center" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="text-white mb-4">Problems</h2>
+                        <p class="text-white-50">
+                            '2020 대한민국 '인구감소 비탈길' 들어선다'</br>
+                            '40연 뒤 대한민국 인구 '반토막'난다. 노연부양비 4.5배 급증'</br>
+                            '20연 뒤 대한민국 인구 92만 명 줄어든다'</br>
+                            '대한민국 인구수 세계 28위...출산율 '꼴찌'</br>
+                        </p>
+                        <p class="text-white-50">
+                            '초등학교 폐교(廢校) 속출' '갈 곳 없는 교사들' '문방구점,떡볶이 집도 문닫아'</br>
+                            먼 훗날의 일이 아니다. 앞으로 10연 후 전국적으로 벌어질 우리의 자화상(自畫像)이다.<br>
+                            보다 구체적으로 들어가보자. 10연 후면 전국 초등학교 10개 중 3개가 사라진다.<br>
+                            초등학생 수는 현재 401만명. 10연 후인 2015연엔 277만명으로 무려 124만명이 줄어든다.<br>
+                            한 학교의 평균 학생수(760명)로 계산하면 1600개교가 사라져야 할 운명이다.<br>
+                            초등학교는 전통적으로 한 지역의 중심이었다. 그러나 저출산과 노령화로 초등학교가 이미 활력을 잃고 있다.<br>
+                            "인재양성을 통한 국가경쟁령 향상이란 국가적 목표도 공염불이 될 가능성이 높다"</br>
+                            - [아이 안낳는 한국 미래가 없다] 2005 -
+                        </p>
+                        <p class="text-white-50">
+                           최근 인구 수 관련 뉴스 기사 헤드라인과 2005연 발행된 책의 일부입니다.<br>
+                           이렇듯 대한민국의 인구수 문제는 여러해를 거쳐 꾸준히 제기되었던 문제입니다.<br>
+                           저는 이를 바탕으로<br>
+                           <font color="white">'영유아 인구수가 줄면 초등학교의 수가 줄어든다'</font><br>
+                           라는 가설을 세우고 이에 관련된 문제들에 집중을 하였습니다.<br>
+                        </p>
+                        <p class="text-white-50">
+                          초등학교의 수가 줄어들면, 초등생들의 통학 시간과<br>
+                          교원 1인당 학생수의 증가로 교육의 품질이 떨어질 것이며<br>
+                          초등교사 임용 수요의 문제 또한 야기될 것입니다.<br>
+                          위와같은 문제를 해결하기 위해 실제 데이터가 필요하였습니다.
+                        </p>
+                        <br><br><br><br><br><br><br><br>
+                        <h2 class="text-white mb-4">How to Solve</h2>
+                        <p class="text-white-50">
+                            첫번째. 연도별 대한민국 인구수와 영유아 인구수를 비교하였습니다.<br><br>
+                            두번째. 연도별 영유아 인구수와 초등학교 수를 비교하였습니다.<br><br>
+                            세번째. 행정구역별 영유아 인구수와 초등학교 수를 비교하였습니다.<br><br>
+                            네번째. 연도별 교원 1인당 학생수를 비교하였습니다.<br><br><br><br><br><br>
+                            Data Processing은 Python, Data Visualization은 Google Chart를 사용했습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Data Processing&Visualization-->
+        <section class="projects-section bg-light" id="projects">
+            <div class="container">
+                <!-- Featured Project Row-->
+                <div class="row align-items-center no-gutters mb-4 mb-lg-5"> <!--div 한 묶음이다잉! -->
+                    <!-- <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" /></div> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Data Set</h4>
+                            <p class="text-black-50 mb-0">
+                              서울시 보육통계 영유아 현황정보(2010-2019)<br>
+                              서울시 초등학교 통계(2010-2019)<br>
+                              교원 1인당 학생수(구별)통계(2010-2019)<br>
+                              출처. 서울 열린데이터 광장
+                            </p>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row align-items-center no-gutters mb-4 mb-lg-5"> <!--div 한 묶음이다잉! -->
+                    <!-- <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" /></div> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Data Processing</h4>
+                            <p class="text-black-50 mb-0">PYTHON을 이용하여 아래와 같은 방식으로<br>
+                              연도별 영유아 인구수, 행정구역별 영유아 인구수<br>
+                              행정구역별 초등학교수에 대한 데이터를 <br>전처리 하였습니다.
+                            </p>
+                        </div>
+                        <br>
+                        <div><img src="assets/img/processing3.png" alt="" /></div>
+                    </div>
+                </div>
+                <br><br><br><br><br><br><br><br><br><br>
+                <div class="row align-items-center no-gutters mb-4 mb-lg-5"> <!--div 한 묶음이다잉! -->
+                    <!-- <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" /></div> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>연도별<br>대한민국 인구수와 영유아 인구수</h4>
+                            <p class="text-black-50 mb-0">대한민국 전체 인구수는 증가하는 추세지만,<br>
+                               영유아 인구수는 급격히 감소함을 <br>알 수 있습니다.</p>
+                        </div>
+                        <br>
+                        <div id="pop_chart_div" style="width: 800px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                    <!-- <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" /></div> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>연도별<br>영유아 인구수와 초등학교수</h4>
+                            <p class="text-black-50 mb-0">영유아 인구 수가 줄어들지만,<br>
+                            초등학교 수는 그와 반대로 소폭 상승하고 있는 것을 알 수 있습니다.</p>
+                        </div>
+                        <br>
+                        <div id="pop_school_chart_div"></div>
+                    </div>
+                </div>
+                <div class="row align-items-center no-gutters mb-4 mb-lg-5"> <!--div 한 묶음이다잉! -->
+                    <!-- <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" /></div> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>행정구역별<br> 영유아 인구수와 초등학교수</h4>
+                            <p class="text-black-50 mb-0">인구수와 초등학교수가<br>
+                              어느정도 일치함을 알 수 있습니다.
+                            </p>
+                        </div>
+                        <br>
+                        <div id="donut_parent">
+                          <div id="pop_piechart" style="width: 500px; height: 500px;"></div>
+                          <div id="school_piechart" style="width: 500px; height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center no-gutters mb-4 mb-lg-5"> <!--div 한 묶음이다잉! -->
+                    <!-- <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" /></div> -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>연도별<br>교원 1인당 학생 수</h4>
+                            <p class="text-black-50 mb-0">
+                              영유아 인구수가 줄어도 초등학교수가 늘어<br>
+                              교원 1인당 학생 수가 줄어듬을 알 수 있습니다.
+                            </p>
+                        </div>
+                        <br>
+                        <div id="curve_chart" style="width: 900px; height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Signup-->
+        <section class="signup-section" id="signup">
+          <div class="container" align=center>
+            <font size=100 color='black'>Conclusions</font>
+            <br><br><br><br><br>
+          </div>
+            <div class="container">
+              <!-- Project One Row-->
+              <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                  <!-- <div class="col-lg-6"><img class="img-fluid" src="assets/img/증명사진.jpg" alt="" /></div> -->
+                  <div class="col-lg-6">
+                      <div class="bg-black text-center h-100 project">
+                          <div class="d-flex h-100">
+                              <div class="project-text w-100 my-auto text-center text-lg-left">
+                                  <h4 class="text-white">영유아 인구수가 줄어도 초등학교의 수가 줄지 않았다.</h4>
+                                  <p class="mb-0 text-white-50"><br>전체 인구와 영유아 인구수의 비교를 통하여 영유아 인구수가 줄어드는 것을 확인할 수 있었고, 이를 바탕으로 초등학교 수와 비교를 하였을 때 초등학교 수는 증가하는 것을 알 수 있었습니다. 서울 시내의 초등학교 분포에 더 정확한 정보를 파악하기 위하여 행정구역별 영유아 인구수와 초등학교 수를 비교하였을 때 두 관계가 일치함을 확인할 수 있었습니다.<br><br></p>
+                                  <hr class="d-none d-lg-block mb-0 ml-0" />
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <br>
+              <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                  <!-- <div class="col-lg-6"><img class="img-fluid" src="assets/img/증명사진.jpg" alt="" /></div> -->
+                  <div class="col-lg-6">
+                      <div class="bg-black text-center h-100 project">
+                          <div class="d-flex h-100">
+                              <div class="project-text w-100 my-auto text-center text-lg-left">
+                                  <h4 class="text-white">초등학교 수의 증가로 교육의 품질은 증가하였다.</h4>
+                                  <p class="mb-0 text-white-50"><br>초등학교 수가 줄어들고 교육의 품질이 낮아질 것이라는 예상과 반대로
+                                    교원 1인당 학생수를 연도별로 비교하였을 때 감소함을 확인할 수 있었습니다.
+                                    영유아 인구수가 줄어도 초등학교 수가 증가하고 교원 1인당 학생수가 감소함으로 교육의 품질이 증가하고 있음을 알 수 있었습니다.
+                                    </p>
+                                  <hr class="d-none d-lg-block mb-0 ml-0" />
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <br><br><br><br><br><br><br><br><br><br><br>
+              <!-- Project Two Row-->
+
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="contact-section bg-black">
+            <div class="container" align=center>
+              <font size=100 color='white'>감사합니다</font>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container">Data Visualization 2020.11.12</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
